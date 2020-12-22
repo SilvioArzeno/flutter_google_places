@@ -50,8 +50,6 @@ final homeScaffoldKey = GlobalKey<ScaffoldState>();
 final searchScaffoldKey = GlobalKey<ScaffoldState>();
 
 class _MyAppState extends State<MyApp> {
-  Mode _mode = Mode.overlay;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,40 +61,14 @@ class _MyAppState extends State<MyApp> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          _buildDropdownMenu(),
           RaisedButton(
             onPressed: _handlePressButton,
             child: Text("Search places"),
-          ),
-          RaisedButton(
-            child: Text("Custom"),
-            onPressed: () {
-              Navigator.of(context).pushNamed("/search");
-            },
           ),
         ],
       )),
     );
   }
-
-  Widget _buildDropdownMenu() => DropdownButton(
-        value: _mode,
-        items: <DropdownMenuItem<Mode>>[
-          DropdownMenuItem<Mode>(
-            child: Text("Overlay"),
-            value: Mode.overlay,
-          ),
-          DropdownMenuItem<Mode>(
-            child: Text("Fullscreen"),
-            value: Mode.fullscreen,
-          ),
-        ],
-        onChanged: (m) {
-          setState(() {
-            _mode = m;
-          });
-        },
-      );
 
   void onError(PlacesAutocompleteResponse response) {
     homeScaffoldKey.currentState.showSnackBar(
@@ -111,7 +83,6 @@ class _MyAppState extends State<MyApp> {
       context: context,
       apiKey: kGoogleApiKey,
       onError: onError,
-      mode: _mode,
       language: "fr",
       components: [Component(Component.country, "fr")],
     );

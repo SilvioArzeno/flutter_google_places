@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_webservice/places.dart';
 
-import 'flutter_google_places.dart';
 import 'places_autocomplete_field.dart';
 
 /// A [FormField] that contains a [PlacesAutocompleteField].
@@ -51,7 +50,6 @@ class PlacesAutocompleteFormField extends FormField<String> {
     String hint = "Search",
     Icon trailing,
     VoidCallback trailingOnTap,
-    Mode mode = Mode.fullscreen,
     num offset,
     Location location,
     num radius,
@@ -62,7 +60,6 @@ class PlacesAutocompleteFormField extends FormField<String> {
     bool strictbounds,
     ValueChanged<PlacesAutocompleteResponse> onError,
     InputDecoration inputDecoration = const InputDecoration(),
-    bool autovalidate = false,
     FormFieldSetter<String> onSaved,
     FormFieldValidator<String> validator,
   })  : assert(initialValue == null || controller == null),
@@ -72,7 +69,7 @@ class PlacesAutocompleteFormField extends FormField<String> {
               controller != null ? controller.text : (initialValue ?? ''),
           onSaved: onSaved,
           validator: validator,
-          autovalidate: autovalidate,
+          autovalidateMode: AutovalidateMode.disabled,
           builder: (FormFieldState<String> field) {
             final _TextFormFieldState state = field;
             final InputDecoration effectiveDecoration = inputDecoration
@@ -94,7 +91,6 @@ class PlacesAutocompleteFormField extends FormField<String> {
               language: language,
               sessionToken: sessionToken,
               types: types,
-              mode: mode,
               strictbounds: strictbounds,
               onChanged: state.didChange,
               onError: onError,

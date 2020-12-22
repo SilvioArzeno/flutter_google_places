@@ -44,7 +44,6 @@ class PlacesAutocompleteField extends StatefulWidget {
     this.hint = "Search",
     this.trailing,
     this.trailingOnTap,
-    this.mode = Mode.fullscreen,
     this.offset,
     this.location,
     this.radius,
@@ -109,8 +108,6 @@ class PlacesAutocompleteField extends StatefulWidget {
   /// Source: https://developers.google.com/places/web-service/autocomplete
   final num offset;
 
-  final Mode mode;
-
   final String language;
 
   final String sessionToken;
@@ -167,7 +164,6 @@ class _LocationAutocompleteFieldState extends State<PlacesAutocompleteField> {
         apiKey: widget.apiKey,
         offset: widget.offset,
         onError: widget.onError,
-        mode: widget.mode,
         hint: widget.hint,
         language: widget.language,
         sessionToken: widget.sessionToken,
@@ -182,7 +178,7 @@ class _LocationAutocompleteFieldState extends State<PlacesAutocompleteField> {
     Prediction p = await _showAutocomplete();
 
     if (p == null) return;
-    
+
     setState(() {
       _effectiveController.text = p.description;
       if (widget.onChanged != null) {
