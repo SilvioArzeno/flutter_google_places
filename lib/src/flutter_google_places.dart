@@ -366,8 +366,8 @@ abstract class PlacesAutocompleteState extends State<PlacesAutocompleteWidget> {
   void dispose() {
     super.dispose();
 
-    _places.dispose();
-    _debounce.cancel();
+    _places?.dispose();
+    _debounce?.cancel();
   }
 
   @mustCallSuper
