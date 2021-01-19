@@ -6,7 +6,7 @@ import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-const kGoogleApiKey = "AIzaSyBE6I92jcNrJ0BwWHNLBIUfPcvUEnPCUxc";
+const kGoogleApiKey = "GOOGLE API KEY";
 
 main() {
   runApp(RoutesWidget());
