@@ -341,8 +341,8 @@ abstract class PlacesAutocompleteState extends State<PlacesAutocompleteWidget> {
         language: widget.language,
         sessionToken: widget.sessionToken,
         types: widget.types ?? [],
-        components: widget.components!,
-        strictbounds: widget.strictbounds!,
+        components: widget.components ?? [],
+        strictbounds: widget.strictbounds ?? false,
         region: widget.region,
       );
 
